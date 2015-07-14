@@ -34,9 +34,6 @@ class qtype_jme_edit_form extends qtype_shortanswer_edit_form {
         $PAGE->requires->js('/question/type/jme/jme_script.js');
         $PAGE->requires->css('/question/type/jme/styles.css');
 
-        $mform->addElement('html', html_writer::tag('div', get_string('enablejavascript', 'qtype_jme'),
-                array('class' => 'jme_applet', 'code' => 'JME.class', 'id' => 'jme1', 'name' => 'JME1',
-                'archive' => 'JME.jar', 'width' => '360', 'height' => '315')));
         $mform->addElement('hidden', 'usecase', 1);
         $mform->setType('usecase', PARAM_INT);
         $optionscript = 'onClick = "setJSMEoptions()"';
@@ -57,6 +54,10 @@ class qtype_jme_edit_form extends qtype_shortanswer_edit_form {
         $mform->addElement('static', 'answersinstruct',
                 get_string('correctanswers', 'qtype_jme'),
                 get_string('filloutoneanswer', 'qtype_jme'));
+        $mform->addElement('html', html_writer::tag('div', get_string('enablejavascript', 'qtype_jme'),
+                array('class' => 'jme_applet', 'code' => 'JME.class', 'id' => 'jme1', 'name' => 'JME1',
+                'archive' => 'JME.jar', 'width' => '360', 'height' => '315', 'style' => 'margin: 1.5em auto')));
+
         $mform->closeHeaderBefore('answersinstruct');
 
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_jme', '{no}'),
